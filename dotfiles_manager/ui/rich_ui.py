@@ -172,8 +172,8 @@ class RichUI(UIInterface):
     def _display_header(self):
         """Display application header"""
         header_content = Group(
-            Text("🐉 WAYFIRE DOTFILES MANAGER", style=f"bold {LIME_PRIMARY}", justify="center"),
-            Text("Manage your Wayfire configuration files", style=f"{LIME_SECONDARY}", justify="center"),
+            Text("🐉 DOTFILES MANAGER", style=f"bold {LIME_PRIMARY}", justify="center"),
+            Text("Manage your configuration files", style=f"{LIME_SECONDARY}", justify="center"),
             Text("")
         )
 
@@ -212,7 +212,7 @@ class RichUI(UIInterface):
                     menu_lines.append(Text(f"        · [{num}] {title}", style="dim white"))
 
             # Create header
-            header = Text("Manage your Wayfire configuration files", style=MAT_TEXT_SECONDARY, justify="center")
+            header = Text("Manage your dorfiles", style=MAT_TEXT_SECONDARY, justify="center")
 
             # Create complete menu content
             menu_content = Group(
@@ -226,7 +226,7 @@ class RichUI(UIInterface):
             # Display menu panel
             menu_panel = Panel(
                 menu_content,
-                title="🐉 WAYFIRE DOTFILES MANAGER",
+                title="🐉 DOTFILES MANAGER",
                 title_align="center",
                 style="#F8FFF8",
                 border_style=MAT_ACCENT,
