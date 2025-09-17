@@ -1,6 +1,6 @@
-# 🐉 Wayfire Dotfiles Manager
+# 🐉 Dotfiles Manager
 
-A powerful Python-based TUI (Terminal User Interface) application for managing your Wayfire Wayland compositor configuration files with git integration. Fully translated English interface with robust input handling for both interactive and automated environments.
+A powerful Python-based TUI (Terminal User Interface) application for managing your dotfiles files with git integration. Fully translated English interface with robust input handling for both interactive and automated environments.
 
 ## ✨ Features
 
@@ -44,8 +44,8 @@ dotfiles_manager/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/wayfire-dotfiles.git
-cd wayfire-dotfiles
+git clone https://github.com/wdog/dotfiles-manager.git
+cd dotfiles-manager
 ```
 
 ### 2. Set Up Python Environment
@@ -160,58 +160,9 @@ Backups are stored in `~/.config/dotfiles-manager/backup/YYYYMMDD_HHMMSS/`
 4. Navigate with **↑↓** arrows
 5. Press **q** to return to settings menu
 
-## 🎨 Wayfire Configuration
-
-The repository includes a complete Wayfire setup:
-
-- **`.config/wayfire.ini`** - Main compositor configuration
-- **`.config/wf-shell.ini`** - Panel and dock configuration
-
-### Key Features
-- **Tiling Window Management** - Simple-tile plugin with gaps
-- **Animations** - Smooth window animations and effects
-- **Workspaces** - 4x2 grid workspace layout
-- **Blur Effects** - Background blur with kawase method
-- **Custom Keybindings** - Optimized key combinations
-
 ## 🆕 Recent Updates
 
-### Complete English Translation
-- **Full Interface Translation** - All Italian text converted to English
-- **Consistent Terminology** - Standardized English terms throughout
-- **y/n Confirmations** - All prompts now use English "yes/no" format instead of Italian "sì/no"
 
-### Enhanced Input Handling
-- **Automation Support** - Robust handling for scripted/piped input
-- **Non-Interactive Mode** - Works in CI/CD and automated environments
-- **EOF Error Fixed** - Repository initialization now works in all environments
-
-### Improved User Experience
-- **Compact Settings Interface** - Form-style settings editor with real-time feedback
-- **No Confirmation Dialogs** - Streamlined push/pull operations for faster workflow
-- **Better Error Messages** - Clear English error descriptions and solutions
-
-## 🔧 Advanced Usage
-
-### Custom .gitignore
-
-Use **Settings** → **📝 Edit .gitignore** to exclude files from tracking.
-
-Example patterns:
-```
-# Temporary files
-*.tmp
-*.log
-.cache/
-
-# Sensitive data
-.ssh/private_keys
-.gnupg/
-
-# IDE files
-.vscode/
-.idea/
-```
 
 ### Logging
 
@@ -280,4 +231,4 @@ This project is open source. Feel free to use, modify, and distribute.
 
 ---
 
-**Made with 🦀 and ❤️ for the Wayfire community**
+**Made with 🦀 and ❤️ for me**
