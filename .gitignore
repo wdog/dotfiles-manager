@@ -1,0 +1,21 @@
+
+# Claude Code configuration
+CLAUDE.md
+
+# Test files
+test_keys.py
+test_*.py
+debug_*.py
+
+# Demo files
+demo_*.py
+
+# IDE configurations
+.vscode/
+.idea/
+
+# Auto-generated patterns from dotfiles manager config
+__pycache__/
+*/__pycache__/**
+.claude/
+README_MODULAR.md

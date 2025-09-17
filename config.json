@@ -1,0 +1,6 @@
+{
+    "git_dir": "~/.dotfiles.git",
+    "work_tree": "~",
+    "remote": "git@github.com:wdog/recipes.git",
+    "enable_logging": true
+}
