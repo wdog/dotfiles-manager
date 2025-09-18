@@ -67,32 +67,109 @@ pip install -r requirements.txt
 python main.py
 ```
 
-### 4. Initial Setup
+## 📋 Step-by-Step Tutorial
 
-1. **Open Settings Menu** - Select `🐒 Settings` from main menu
-2. **Edit Configuration** - Choose `✏️ Edit Settings`
-3. **Configure Git Repository**:
-   - Set `git_dir` (default: `~/.dotfiles.git`)
-   - Set `work_tree` (default: `~`)
-   - Set `remote` URL (your dotfiles repository)
-   - Enable logging if desired
-4. **Initialize Repository** - Go back and select `🚀 Initialize Git Repo`
+### Step 1: Initial Configuration
+
+1. **Launch Application**
+   ```bash
+   python main.py
+   ```
+
+2. **Open Settings**
+   - Select `🐒 Settings` from main menu (navigate with arrows and press Enter, or use shortcut keys shown)
+
+3. **Edit Configuration**
+   - Choose `✏️ Edit Settings`
+   - Configure the following fields (see [Settings Explained](#-settings-explained) for details):
+     - [`git_dir`](#git_dir): `~/.dotfiles.git` (default is fine)
+     - [`work_tree`](#work_tree): `~` (your home directory)
+     - [`remote`](#remote): Your dotfiles repository URL (e.g., `https://github.com/username/dotfiles.git`)
+     - [`enable_logging`](#enable_logging): `true` (recommended for debugging)
+   - Press `s` to save settings
+   - Press `q` to exit settings editor
+
+### Step 2: Initialize Repository
+
+1. **Back in Settings Menu**
+   - Select `🚀 Initialize Git Repo`
    - Confirm with `y` when prompted
-   - Repository will be automatically configured
+   - Wait for initialization to complete (creates bare git repository)
 
-### 5. Basic Workflow
+### Step 3: First Pull (if you have existing dotfiles)
 
-1. **Browse Files** - Use `🐙 Browse Files` to select configuration files
-2. **Stage Changes** - Select files and press `Tab` to add to git
-3. **View Changes** - Use `🍻 Modified Files` to see staged files
-4. **Commit** - Press `c` to commit with auto-generated message
-5. **Push** - Press `p` to push changes to remote repository
+1. **From Main Menu**
+   - Select `🍻 Modified Files`
+   - Press `g` to pull changes from remote
+   - If conflicts occur, backups are automatically created in `~/.config/dotfiles-manager/backup/`
+
+### Step 4: Add Your First Files
+
+1. **Browse Files**
+   - From main menu, select `🐙 Browse Files`
+   - Navigate using arrows
+   - Find your config files (e.g., `.bashrc`, `.vimrc`, `.config/`)
+
+2. **Select Files**
+   - Press `Space` to select files (🍌 banana emoji indicates selection)
+   - Select multiple files as needed
+
+3. **Stage Files**
+   - Press `Tab` to add selected files to git staging area
+   - Confirm with `y` when prompted
+
+### Step 5: Commit Changes
+
+1. **View Staged Files**
+   - Go back to main menu and select `🍻 Modified Files`
+   - You'll see your staged files listed
+
+2. **Create Commit**
+   - Press `c` to commit
+   - Auto-generated commit message will be shown
+   - Confirm with `y`
+
+### Step 6: Push to Remote
+
+1. **Push Changes**
+   - Still in Modified Files view, press `p` to push
+   - Changes are pushed to your remote repository
+   - No additional confirmation needed
+
+### Step 7: Monitor and Manage
+
+#### Viewing Logs
+1. **Access Logs**
+   - Go to `🐒 Settings` → `📋 View Logs`
+   - Navigate with arrows
+   - Press `r` to refresh
+   - Press `d` to clear logs (with confirmation)
+
+#### Managing Backups
+1. **Access Backup Manager**
+   - Go to `🐒 Settings` → `🗑️ Manage Backups`
+   - View all backups with timestamp and file count
+   - Press `x` to delete unwanted backups
+   - Each backup shows size and creation date
+
+#### Ongoing Workflow
+1. **Regular Updates**
+   - Use `🐙 Browse Files` to add new config files
+   - Use `🍻 Modified Files` to commit and push changes
+   - Pull updates with `g` in Modified Files view
+
+2. **Quick Operations**
+   - `c` = commit with auto-generated message
+   - `p` = push to remote (no confirmation)
+   - `g` = pull from remote (no confirmation)
+   - `r` = remove from staging (unstage files)
 
 ## 🎮 Key Controls
 
 ### Main Navigation
-- **↑↓ / hjkl** - Navigate menus
+- **↑↓** - Navigate menus
 - **Enter** - Select option
+- **Shortcut keys** - Use the key shortcuts displayed in option menus
 - **q / Esc** - Go back/quit
 
 ### File Browser
@@ -226,8 +303,65 @@ This project is open source. Feel free to use, modify, and distribute.
 ### Input/Navigation Issues
 - Ensure terminal supports ANSI escape sequences
 - Try different terminal emulators if keys don't work
-- Use number keys (1-5) for direct menu selection
+- Navigate with arrow keys or use shortcut keys displayed in option menus
 - Application supports both interactive and automated input
+
+## ⚙️ Settings Explained
+
+Understanding the configuration settings is crucial for proper dotfiles management. Each setting controls how the application interacts with Git and manages your files.
+
+### `git_dir`
+**Purpose**: Location of the Git repository metadata
+**Default**: `~/.dotfiles.git`
+**What it does**: This is where Git stores all repository information (commits, branches, refs, etc.). Using a hidden directory keeps your home directory clean while maintaining full Git functionality.
+
+**Why bare repository**: A bare repository has no working directory, which is perfect for dotfiles since your entire home directory becomes the working tree.
+
+### `work_tree`
+**Purpose**: The directory that contains your actual files
+**Default**: `~` (your home directory)
+**What it does**: This tells Git where your actual configuration files are located. All file operations (add, commit, etc.) operate on files within this directory.
+
+**Why home directory**: Your dotfiles (.bashrc, .vimrc, .config/, etc.) are naturally stored in your home directory, so this becomes your Git working tree.
+
+### `remote`
+**Purpose**: URL of your remote Git repository
+**Example**: `https://github.com/username/dotfiles.git`
+**What it does**: This is where your dotfiles are stored in the cloud. The application uses this to:
+- Push your local changes to backup/share them
+- Pull updates from other machines
+- Synchronize dotfiles across multiple systems
+
+**Supported formats**:
+- HTTPS: `https://github.com/user/repo.git`
+- SSH: `git@github.com:user/repo.git`
+- GitLab: `https://gitlab.com/user/repo.git`
+
+### `enable_logging`
+**Purpose**: Controls whether operations are logged
+**Default**: `false`
+**What it does**: When enabled, all Git operations and application events are logged to help with:
+- Debugging issues
+- Understanding what operations were performed
+- Tracking changes over time
+
+**Log location**: Logs can be viewed through Settings → View Logs
+
+### How Settings Work Together
+
+1. **Repository Structure**: `git_dir` + `work_tree` create a bare repository that manages your home directory
+2. **File Management**: Files in `work_tree` are tracked by Git metadata in `git_dir`
+3. **Synchronization**: `remote` enables sharing dotfiles across machines
+4. **Monitoring**: `enable_logging` provides visibility into all operations
+
+### Optimization Settings (Automatic)
+
+The application automatically configures these Git settings for optimal performance:
+
+- `status.showUntrackedFiles no` - Prevents Git from scanning thousands of untracked files in your home directory
+- `advice.addIgnoredFile false` - Disables warnings about ignored files
+- `core.worktree` - Points to your home directory
+- `core.excludesfile` - Uses global gitignore for common patterns
 
 ---
 

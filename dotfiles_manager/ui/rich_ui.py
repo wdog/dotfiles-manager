@@ -211,23 +211,31 @@ class RichUI(UIInterface):
                 else:
                     menu_lines.append(Text(f"        · [{num}] {title}", style="dim white"))
 
-            # Create header
-            header = Text("Manage your dorfiles", style=MAT_TEXT_SECONDARY, justify="center")
+            # Create header as a single centered block
+            header_ascii = """╔═══════════════════════════════════════╗
+║  🐉  D O T F I L E S   M A N A G E R  ║
+║    Manage your configuration files    ║
+╚═══════════════════════════════════════╝"""
+
+            header_content = [Text(header_ascii, style=f"bold {MAT_ACCENT}", justify="center")]
+
+            # Create footer with helpful information
+            footer_info = Text("💡 Tip: Use shortcuts [1-5] for quick navigation", style=MAT_TEXT_HINT, justify="center")
+            footer_controls = Text("[↑↓]: navigate • [Enter]: select • [q]: quit", style=MAT_TEXT_SECONDARY, justify="center")
 
             # Create complete menu content
             menu_content = Group(
-                header,
+                *header_content,
                 Text(""),
                 *menu_lines,
                 Text(""),
-                Text("[↑↓/hjkl]: navigate • [Enter]: select • [1-5]: direct • [q]: quit", style=MAT_TEXT_SECONDARY, justify="center")
+                footer_info,
+                footer_controls
             )
 
             # Display menu panel
             menu_panel = Panel(
                 menu_content,
-                title="🐉 DOTFILES MANAGER",
-                title_align="center",
                 style="#F8FFF8",
                 border_style=MAT_ACCENT,
                 box=box.ROUNDED,

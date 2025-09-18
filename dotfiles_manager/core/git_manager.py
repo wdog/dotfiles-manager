@@ -184,7 +184,6 @@ class GitManager:
         try:
             # Remove existing git directory if it exists
             if os.path.exists(git_dir):
-                import shutil
                 shutil.rmtree(git_dir)
 
             # Create git directory
@@ -237,7 +236,8 @@ __pycache__/
             git_config_commands = [
                 (['git', '-C', git_dir, 'config', 'status.showUntrackedFiles', 'no'], "Hide untracked files"),
                 (['git', '-C', git_dir, 'config', 'core.worktree', work_tree], "Configure work tree"),
-                (['git', '-C', git_dir, 'config', 'core.excludesfile', gitignore_path], "Configure global gitignore")
+                (['git', '-C', git_dir, 'config', 'core.excludesfile', gitignore_path], "Configure global gitignore"),
+                (['git', '-C', git_dir, 'config', 'advice.addIgnoredFile', 'false'], "Disable ignored file warnings")
             ]
 
             for cmd_args, description in git_config_commands:
@@ -466,7 +466,7 @@ __pycache__/
                 failed_files[file_path] = error_msg
                 continue
 
-            success, stdout, stderr = self.run_git_command(['add', rel_path])
+            success, _, stderr = self.run_git_command(['add', rel_path])
             if success:
                 success_files.append(file_path)  # Use original path, not rel_path
                 print(f"Added: {rel_path}")
